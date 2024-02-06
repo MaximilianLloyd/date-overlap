@@ -6,7 +6,7 @@ export function checkOverlap(ranges: DateRange[]): boolean {
     const first = ranges[0]
     const last = ranges[ranges.length - 1]
 
-    return Math.abs(epoch(last.end) - epoch(first.start)) < sumDelta(ranges)
+    return Math.abs(epoch(last.end) - epoch(first.start)) < Math.abs(sumDelta(ranges))
 }
 
 function sumDelta(ranges: DateRange[]): number {
