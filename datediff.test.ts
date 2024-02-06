@@ -1,51 +1,45 @@
 import { describe, it, expect } from "bun:test";
 import { checkOverlap } from "./datediff";
+import type { DateRange } from "./types";
+
+const newRange = (start: string, end: string) =>
+  ({
+    start: new Date(start),
+    end: new Date(end),
+  }) as DateRange;
 
 describe("DateDiff", () => {
-  it("overlap should be true", () => {
-    const range1 = {
-      start: new Date("2020-01-01"),
-      end: new Date("2020-01-10"),
-    };
-
-    const range2 = {
-      start: new Date("2020-01-05"),
-      end: new Date("2020-01-15"),
-    };
-        
-    const range3 = {
-      start: new Date("2020-01-14"),
-      end: new Date("2020-01-20"),
-    };
-
-    expect(checkOverlap([range1, range2])).toBe(true);
-  });
-  
-    it("overlap should be false", () => {
-    const range1 = {
-      start: new Date("2020-01-01"),
-      end: new Date("2020-01-04"),
-    };
-
-    const range2 = {
-      start: new Date("2020-01-06"),
-      end: new Date("2020-01-15"),
-    };
-
-    expect(checkOverlap([range1, range2])).toBe(false);
+  it("should overlap with two", () => {
+    expect(
+      checkOverlap([
+        newRange("2020-01-01", "2020-01-10"),
+        newRange("2020-01-05", "2020-01-15"),
+      ]),
+    ).toBe(true);
   });
 
-   it("should be interchangable", () => {
-    const range1 = {
-      start: new Date("2020-01-01"),
-      end: new Date("2020-01-10"),
-    };
+  it("should overlap with > 2 ranges", () => {
+    expect(
+      checkOverlap([
+        newRange("2020-01-01", "2020-01-10"),
+        newRange("2020-01-05", "2020-01-15"),
+        newRange("2020-01-14", "2020-01-20"),
+      ]),
+    ).toBe(true);
+  });
 
-    const range2 = {
-      start: new Date("2020-01-05"),
-      end: new Date("2020-01-15"),
-    };
-  
-     expect(checkOverlap([range2, range1])).toBe(true);
-   });
+  it("overlap should be false", () => {
+    expect(checkOverlap([
+            newRange("2020-01-01", "2020-01-04"),
+            newRange("2020-01-06", "2020-01-15"),
+        ])).toBe(false);
+  });
+
+  it("should be interchangable", () => {
+
+    expect(checkOverlap([
+            newRange("2020-01-01", "2020-01-10"),
+            newRange("2020-01-05", "2020-01-15"),
+        ])).toBe(true);
+  });
 });

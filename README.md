@@ -2,6 +2,11 @@
 
 Regne ut date overlap matematisk.
 
+
+## Formel?
+
+![Formelish](/preview.jpeg)
+
 ---
 
 To install dependencies:
