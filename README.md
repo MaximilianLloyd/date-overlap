@@ -1,4 +1,8 @@
-# scratch
+# date-overlap
+
+Regne ut date overlap matematisk.
+
+---
 
 To install dependencies:
 

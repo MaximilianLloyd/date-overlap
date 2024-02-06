@@ -1,7 +1,4 @@
-type DateRange = {
-    start: Date;
-    end: Date;
-}
+import type { DateRange } from "./types"
 
 const epoch = (date: Date): number => date.getTime()
 
@@ -11,4 +8,3 @@ export function checkOverlap([r1, r2]: [DateRange, DateRange]): boolean {
 
     return Math.abs(epoch(r2.end) - epoch(r1.start)) < Math.abs(r1l + r2l)
 }
-
