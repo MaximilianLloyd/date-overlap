@@ -12,6 +12,11 @@ describe("DateDiff", () => {
       start: new Date("2020-01-05"),
       end: new Date("2020-01-15"),
     };
+        
+    const range3 = {
+      start: new Date("2020-01-14"),
+      end: new Date("2020-01-20"),
+    };
 
     expect(checkOverlap([range1, range2])).toBe(true);
   });
